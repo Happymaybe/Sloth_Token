@@ -1,60 +1,957 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Sloth Token - Page Officielle</title>
-    <meta charset="UTF-8">
-    <style>
-        body { 
-            font-family: Arial; 
-            background: #111; 
-            color: #fff; 
-            text-align: center; 
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            margin-top: 40px;
-            font-size: 40px;
-        }
-        .card { 
-            background: #222; 
-            padding: 20px; 
-            margin: 30px auto; 
-            width: 80%; 
-            max-width: 600px;
-            border-radius: 12px; 
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-        a { 
-            color: #00ffcc; 
-            text-decoration: none; 
-            font-weight: bold; 
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Sloth Token – Jungle for Humanity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sloth Token - Un projet crypto à thème jungle qui reverse une partie des profits pour aider les enfants et lutter contre la guerre." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #030b07;
+      --bg-card: rgba(5, 25, 16, 0.92);
+      --accent: #3ef87a;
+      --accent-soft: rgba(62, 248, 122, 0.12);
+      --accent-yellow: #f5d66b;
+      --text-main: #f5fff7;
+      --text-muted: #9bb8a5;
+      --border-soft: rgba(255, 255, 255, 0.06);
+      --danger: #ff6b6b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #063319 0, #020806 40%, #000000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* ---------- Global Layout ---------- */
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Jungle décor (flou en fond) */
+    .jungle-orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(60px);
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .orb-1 {
+      width: 420px;
+      height: 420px;
+      background: #0ae98c;
+      top: -120px;
+      left: -80px;
+    }
+
+    .orb-2 {
+      width: 360px;
+      height: 360px;
+      background: #0b5c32;
+      bottom: -140px;
+      right: -40px;
+    }
+
+    .orb-3 {
+      width: 260px;
+      height: 260px;
+      background: #f5d66b;
+      top: 40%;
+      right: 10%;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ---------- Navbar ---------- */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(3, 11, 7, 0.92), transparent);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #f5d66b 0, #3ef87a 40%, #064420 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .brand-text-main {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand-text-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s, opacity 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      opacity: 0.9;
+    }
+
+    .nav-cta {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(62, 248, 122, 0.4);
+      background: linear-gradient(120deg, rgba(62, 248, 122, 0.16), transparent);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ---------- Hero ---------- */
+
+    .hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(5, 41, 19, 0.9);
+      border: 1px solid rgba(62, 248, 122, 0.35);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.1rem);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(120deg, #3ef87a, #f5d66b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 30rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0.75rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3ef87a, #f5d66b);
+      color: #041308;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      opacity: 0.96;
+    }
+
+    .btn-ghost {
+      border-color: rgba(255, 255, 255, 0.18);
+      background: rgba(5, 20, 12, 0.9);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(62, 248, 122, 0.6);
+      background: rgba(6, 36, 19, 0.96);
+    }
+
+    .hero-footnote {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hero-footnote span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ---------- Hero Card (right) ---------- */
+
+    .hero-card {
+      background: radial-gradient(circle at top, rgba(62, 248, 122, 0.14), transparent 55%),
+                  var(--bg-card);
+      border-radius: 1.3rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leaf-tag {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.4rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 214, 107, 0.6);
+      background: rgba(9, 36, 13, 0.9);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-yellow);
+    }
+
+    .hero-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.8rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-weight: 600;
+    }
+
+    .badge-impact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(16, 60, 32, 0.95);
+      border: 1px solid rgba(62, 248, 122, 0.5);
+      font-size: 0.75rem;
+      margin-top: 0.4rem;
+    }
+
+    .progress-bar {
+      margin-top: 1.2rem;
+      background: rgba(9, 30, 18, 0.9);
+      border-radius: 999px;
+      padding: 0.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .progress-inner {
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f5d66b, #3ef87a);
+      width: 32%; /* % de la roadmap accomplie (modifiable) */
+    }
+
+    .progress-caption {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ---------- Sections ---------- */
+
+    section {
+      padding: 2.8rem 0;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 30rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.8rem;
+    }
+
+    /* About / Impact */
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .pill {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.78rem;
+      background: rgba(5, 18, 11, 0.9);
+      color: var(--text-muted);
+    }
+
+    .impact-card {
+      background: var(--bg-card);
+      border-radius: 1.1rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.2rem 1.1rem;
+    }
+
+    .impact-item {
+      display: flex;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.88rem;
+    }
+
+    .impact-icon {
+      font-size: 1.1rem;
+      margin-top: 0.1rem;
+    }
+
+    .impact-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Tokenomics */
+
+    .tokenomics-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.6rem;
+    }
+
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+    }
+
+    .token-table th,
+    .token-table td {
+      padding: 0.55rem 0.4rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .token-table th {
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .token-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      border: 1px solid rgba(62, 248, 122, 0.55);
+      background: rgba(5, 25, 16, 0.9);
+      color: var(--accent);
+    }
+
+    .token-alert {
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .token-alert span {
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .links-card {
+      background: var(--bg-card);
+      border-radius: 1.1rem;
+      border: 1px solid var(--border-soft);
+      padding: 1.1rem 1rem;
+      font-size: 0.86rem;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7rem;
+      gap: 0.6rem;
+    }
+
+    .link-label {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .link-value a,
+    .link-value span {
+      font-weight: 500;
+      font-size: 0.86rem;
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .link-placeholder {
+      color: #6b7f72;
+      font-style: italic;
+    }
+
+    /* Roadmap */
+
+    .roadmap {
+      position: relative;
+    }
+
+    .roadmap-list {
+      margin-top: 1.2rem;
+      border-left: 2px solid rgba(62, 248, 122, 0.3);
+      padding-left: 1.2rem;
+    }
+
+    .roadmap-item {
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .roadmap-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #f5d66b, #3ef87a);
+      position: absolute;
+      left: -1.72rem;
+      top: 0.2rem;
+      box-shadow: 0 0 12px rgba(62, 248, 122, 0.75);
+    }
+
+    .roadmap-phase {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .roadmap-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .roadmap-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* Join / Footer */
+
+    .join-card {
+      margin-top: 1.2rem;
+      background: linear-gradient(120deg, rgba(62, 248, 122, 0.12), rgba(5, 25, 16, 0.95));
+      border-radius: 1.1rem;
+      border: 1px solid rgba(62, 248, 122, 0.45);
+      padding: 1.2rem 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .social-pill {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: var(--text-main);
+      background: rgba(4, 20, 13, 0.9);
+    }
+
+    footer {
+      padding: 1.8rem 0 2.2rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-soft);
+      margin-top: 1.8rem;
+    }
+
+    footer .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    /* ---------- Responsive ---------- */
+
+    @media (max-width: 800px) {
+      .hero-grid,
+      .grid-2,
+      .tokenomics-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .navbar-inner {
+        padding: 0.6rem 0;
+      }
+
+      .nav-links {
+        display: none; /* simple version mobile (on peut améliorer avec un burger plus tard) */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .hero-card {
+        margin-top: 0.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <h1>🐨 Sloth Token</h1>
-    <p>La page officielle du projet Sloth Token</p>
+<div class="page">
 
-    <div class="card">
-        <h2>Informations du Token</h2>
-        <p><strong>Nom :</strong> Sloth Token</p>
-        <p><strong>Symbole :</strong> SLTC</p>
-        <p><strong>Adresse :</strong> (à venir)</p>
-        <p><strong>Réseau :</strong> Solana</p>
+  <!-- Jungle light orbs -->
+  <div class="jungle-orb orb-1"></div>
+  <div class="jungle-orb orb-2"></div>
+  <div class="jungle-orb orb-3"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <div class="brand">
+        <div class="logo-circle">🦥</div>
+        <div>
+          <div class="brand-text-main">Sloth Token</div>
+          <div class="brand-text-sub">Jungle for Humanity</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#about">Projet</a>
+        <a href="#impact">Impact</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#join" class="nav-cta">Rejoindre la tribu</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="card">
-        <h2>Liens Officiels</h2>
-        <p><a href="#">Chart (à venir)</a></p>
-        <p><a href="#">Achat (à venir)</a></p>
-        <p><a href="#">Twitter (optionnel)</a></p>
-        <p><a href="#">Telegram (optionnel)</a></p>
-    </div>
+  <!-- Hero -->
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
 
-</body>
-</html>
+        <div>
+          <div class="badge">
+            <div class="badge-dot"></div>
+            <span>Crypto jungle & solidarité</span>
+          </div>
+
+          <h1 class="hero-title">
+            La crypto <span class="hero-highlight">Sloth Token</span><br />
+            qui fait pousser de l’espoir.
+          </h1>
+
+          <p class="hero-subtitle">
+            Un token à thème jungle qui reverse une partie des profits pour
+            aider les enfants qui n’ont rien à manger et soutenir des
+            organisations qui luttent contre la guerre et ses conséquences.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#tokenomics" class="btn btn-primary">
+              Voir le token SLTC →
+            </a>
+            <a href="#impact" class="btn btn-ghost">
+              Comprendre notre impact 🌍
+            </a>
+          </div>
+
+          <p class="hero-footnote">
+            <span>Transparence totale :</span> chaque don sera tracé et annoncé à la communauté.
+          </p>
+        </div>
+
+        <!-- Hero Card Right -->
+        <aside class="hero-card">
+          <div class="leaf-tag">Projet solidaire</div>
+
+          <h3 class="hero-card-title">SLTC – Sloth Token</h3>
+          <p class="hero-card-sub">
+            Un token inspiré par la jungle, porté par une idée simple :
+            <br>faire de la spéculation un levier pour sauver des vies.
+          </p>
+
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Symbole</div>
+              <div class="stat-value">SLTC</div>
+            </div>
+            <div>
+              <div class="stat-label">Réseau</div>
+              <div class="stat-value">Solana</div>
+            </div>
+          </div>
+
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Adresse du token</div>
+              <div class="stat-value">
+                <span class="link-placeholder">À ajouter prochainement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="badge-impact">
+            🌱 <span>Une partie des profits dédiée à l’aide humanitaire.</span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-inner"></div>
+          </div>
+          <div class="progress-caption">
+            <span>Phase 1 : Lancement</span>
+            <span>32% complété</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- About & Impact -->
+    <section id="about">
+      <div class="container grid-2 section">
+        <div>
+          <div class="section-header">
+            <h2 class="section-title">Un projet né dans la jungle…</h2>
+            <p class="section-subtitle">
+              Sloth Token n’est pas juste un memecoin. C’est un symbole :
+              la lenteur du sloth (paresseux) face à la vitesse du monde,
+              mais avec un cœur tourné vers ceux qui souffrent.
+            </p>
+          </div>
+
+          <p class="text-muted">
+            Dans un monde où les marchés bougent à la vitesse de la lumière,
+            on oublie souvent les plus fragiles : les enfants qui ne mangent
+            pas à leur faim, les familles déplacées par la guerre, les
+            populations sans accès à l’eau, à la sécurité, à l’éducation.
+          </p>
+
+          <p class="text-muted" style="margin-top: 0.7rem;">
+            Avec Sloth Token, notre ambition est simple :
+            transformer une partie des profits en dons concrets pour soutenir
+            des ONG et des projets de terrain. Chaque montée de la jungle
+            crpyto doit se traduire en espoir quelque part dans le monde.
+          </p>
+
+          <div class="pill-list">
+            <div class="pill">🌿 Thème jungle</div>
+            <div class="pill">🧒 Aide aux enfants</div>
+            <div class="pill">🕊️ Lutte contre les conséquences de la guerre</div>
+            <div class="pill">🔍 Transparence des dons</div>
+          </div>
+        </div>
+
+        <div id="impact">
+          <div class="impact-card">
+            <h3 style="margin-bottom: 0.8rem;">Comment nous aidons concrètement</h3>
+
+            <div class="impact-item">
+              <div class="impact-icon">🍽️</div>
+              <div>
+                <div class="impact-title">Nourrir les enfants</div>
+                <div class="impact-desc">
+                  Une partie des profits sera dirigée vers des programmes qui
+                  financent des repas pour les enfants dans les zones les plus touchées.
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-item">
+              <div class="impact-icon">🕊️</div>
+              <div>
+                <div class="impact-title">Soutenir les victimes de guerre</div>
+                <div class="impact-desc">
+                  Nous souhaitons soutenir des organisations qui aident les
+                  familles déplacées, les réfugiés et les personnes touchées
+                  par les conflits.
+                </div>
+              </div>
+            </div>
+
+            <div class="impact-item">
+              <div class="impact-icon">📊</div>
+              <div>
+                <div class="impact-title">Rapports transparents</div>
+                <div class="impact-desc">
+                  Chaque don sera annoncé, documenté et partagé avec la
+                  communauté : montants, organisations et impacts.
+                </div>
+              </div>
+            </div>
+
+            <p class="text-muted" style="margin-top: 0.8rem; font-size: 0.8rem;">
+              <strong>Important :</strong> Toute mention de dons n’est pas une
+              promesse financière ou un conseil d’investissement. Faites vos
+              propres recherches (DYOR) avant d’acheter.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tokenomics -->
+    <section id="tokenomics">
+      <div class="container section">
+        <div class="section-header">
+          <h2 class="section-title">Tokenomics de Sloth Token</h2>
+          <p class="section-subtitle">
+            Voici un exemple de distribution. Tu peux ajuster les pourcentages
+            plus tard selon la réalité de ton projet.
+          </p>
+        </div>
+
+        <div class="tokenomics-grid">
+          <div>
+            <table class="token-table">
+              <thead>
+                <tr>
+                  <th>Catégorie</th>
+                  <th>Allocation</th>
+                  <th>Détails</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Liquidité</td>
+                  <td>40%</td>
+                  <td>Pool DEX (ex: Raydium)</td>
+                </tr>
+                <tr>
+                  <td>Communauté</td>
+                  <td>30%</td>
+                  <td>Airdrops, rewards, campagnes</td>
+                </tr>
+                <tr>
+                  <td>Fonds solidaires</td>
+                  <td>15%</td>
+                  <td>Dons progressifs aux ONG</td>
+                </tr>
+                <tr>
+                  <td>Développement</td>
+                  <td>10%</td>
+                  <td>Outils, marketing, partenaires</td>
+                </tr>
+                <tr>
+                  <td>Réserve</td>
+                  <td>5%</td>
+                  <td>Gouvernance & futur</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p class="token-alert">
+              <span>Pas un conseil financier :</span> Sloth Token est un
+              projet expérimental et communautaire. N’investissez jamais plus
+              que ce que vous pouvez vous permettre de perdre.
+            </p>
+          </div>
+
+          <aside class="links-card">
+            <h3 style="margin-bottom: 0.6rem;">Infos techniques & liens</h3>
+
+            <div class="link-row">
+              <div>
+                <div class="link-label">Adresse du token</div>
+              </div>
+              <div class="link-value">
+                <span class="link-placeholder">Tu la colleras ici quand elle sera disponible</span>
+              </div>
+            </div>
+
+            <div class="link-row">
+              <div>
+                <div class="link-label">Chart</div>
+              </div>
+              <div class="link-value">
+                <span class="link-placeholder">Lien DexScreener / BirdEye à venir</span>
+              </div>
+            </div>
+
+            <div class="link-row">
+              <div>
+                <div class="link-label">Achat</div>
+              </div>
+              <div class="link-value">
+                <span class="link-placeholder">Lien Jupiter / Raydium à venir</span>
+              </div>
+            </div>
+
+            <div class="link-row">
+              <div>
+                <div class="link-label">Audit / KYC</div>
+              </div>
+              <div class="link-value">
+                <span class="link-placeholder">Tu pourra
